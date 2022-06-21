@@ -1,0 +1,27 @@
+<template-card class="realtime-users-widget">
+  <template-card-header class="header" fxLayout="column">
+    <template-card-header-heading
+      >Active Users right now</template-card-header-heading
+    >
+
+    <div class="value">{{ currentUsers }}</div>
+  </template-card-header>
+
+  <template-card-content>
+    <div class="section">
+      <div class="heading">Page views per minute</div>
+      <div class="canvas-content">
+        <canvas #canvas></canvas>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="heading">Top Active Pages</div>
+      <template-scrollbar class="pages">
+        <div class="page" *ngFor="let page of pages$ | async">
+          {{ page.page }}
+        </div>
+      </template-scrollbar>
+    </div>
+  </template-card-content>
+</template-card>

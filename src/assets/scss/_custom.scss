@@ -1,0 +1,21 @@
+.notif-success {
+  color: #fffffa !important; // green
+  background-color: #009688 !important;
+  border-color: #009688 !important;
+  font-weight: bold !important;
+  .mat-simple-snackbar-action {
+    color: #fffffa !important;
+    font-weight: bold !important;
+  }
+}
+
+.notif-error {
+  color: #fffffa !important;
+  background-color: #ff7676 !important;
+  border-color: #ff7676 !important;
+  font-weight: bold !important;
+  .mat-simple-snackbar-action {
+    color: #fffffa !important;
+    font-weight: bold !important;
+  }
+}

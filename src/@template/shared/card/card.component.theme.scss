@@ -1,0 +1,14 @@
+.template-card {
+  background: $theme-card;
+  color: $theme-text;
+
+  @include mat-elevation($elevation);
+
+  .template-card-header-subheading {
+    color: $theme-secondary-text;
+  }
+
+  .template-card-actions {
+    border-top: 1px solid $theme-divider;
+  }
+}

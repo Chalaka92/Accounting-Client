@@ -1,0 +1,112 @@
+<template-loading-indicator></template-loading-indicator>
+<template-backdrop #backdrop="templateBackdrop"></template-backdrop>
+
+<!-- QUICKPANEL -->
+<template-sidebar
+  #configPanel="templateSidebar"
+  [backdrop]="backdrop"
+  [invisibleBackdrop]="true"
+  position="right"
+>
+</template-sidebar>
+<!-- END QUICKPANEL -->
+
+<div class="container" fxLayout="column">
+  <ng-container *ngIf="(toolbarPosition$ | async) === 'above-fixed'">
+    <ng-container *ngTemplateOutlet="toolbar"></ng-container>
+  </ng-container>
+
+  <mat-sidenav-container autosize fxFlex>
+    <!-- SIDENAV -->
+    <!-- <mat-sidenav
+      (closedStart)="closeSidenav()"
+      (openedStart)="openSidenav()"
+      [mode]="sidenavMode$ | async"
+      [opened]="sidenavOpen$ | async"
+      *ngIf="sideNavigation$ | async"
+      class="template-collapsable-sidenav"
+    > -->
+    <mat-sidenav
+      (closedStart)="closeSidenav()"
+      (openedStart)="openSidenav()"
+      [mode]="'side'"
+      [opened]="sidenavOpen$ | async"
+      *ngIf="sideNavigation$ | async"
+      class="template-collapsable-sidenav"
+    >
+      <!-- <template-sidenav
+        [collapsed]="sidenavCollapsed$ | async"
+        [expanded]="sidenavExpanded$ | async"
+      ></template-sidenav> -->
+      <template-sidenav
+        [collapsed]="false"
+        [expanded]="true"
+      ></template-sidenav>
+    </mat-sidenav>
+    <!-- END SIDENAV -->
+
+    <mat-sidenav [(opened)]="quickPanelOpen" mode="over" position="end">
+      <template-quickpanel></template-quickpanel>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="content-container" fxLayout="column">
+      <ng-container *ngIf="(toolbarPosition$ | async) === 'fixed'">
+        <ng-container *ngTemplateOutlet="toolbar"></ng-container>
+      </ng-container>
+
+      <!-- CONTENT -->
+      <div cdkScrollable class="content" fxFlex="auto" fxLayout="column">
+        <ng-container *ngIf="(toolbarPosition$ | async) === 'static'">
+          <ng-container *ngTemplateOutlet="toolbar"></ng-container>
+        </ng-container>
+
+        <div class="content-inner" fxFlex="auto">
+          <router-outlet></router-outlet>
+        </div>
+
+        <ng-container *ngIf="(footerPosition$ | async) === 'static'">
+          <ng-container *ngTemplateOutlet="footer"></ng-container>
+        </ng-container>
+      </div>
+      <!-- END CONTENT -->
+
+      <ng-container *ngIf="(footerPosition$ | async) === 'fixed'">
+        <ng-container *ngTemplateOutlet="footer"></ng-container>
+      </ng-container>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+  <ng-container *ngIf="(footerPosition$ | async) === 'above-fixed'">
+    <ng-container *ngTemplateOutlet="footer"></ng-container>
+  </ng-container>
+</div>
+
+<ng-template #toolbar>
+  <!-- TOOLBAR -->
+  <!-- <template-toolbar (openQuickPanel)="openQuickPanel()"
+                [hasNavigation]="topNavigation$ | async"
+                (openSidenav)="openSidenav()"
+                *ngIf="toolbarVisible$ | async"
+                fxFlex="none"></template-toolbar> -->
+  <template-toolbar
+    (openQuickPanel)="openQuickPanel()"
+    [hasNavigation]="false"
+    (openSidenav)="openSidenav()"
+    *ngIf="toolbarVisible$ | async"
+    fxFlex="none"
+  ></template-toolbar>
+  <!-- END TOOLBAR -->
+
+  <!-- NAVIGATION -->
+  <template-navigation
+    *ngIf="topNavigation$ | async"
+    fxFlex="none"
+  ></template-navigation>
+  <!-- END NAVIGATION -->
+</ng-template>
+
+<ng-template #footer>
+  <!-- FOOTER -->
+  <template-footer fxFlex="none"></template-footer>
+  <!-- END FOOTER -->
+</ng-template>

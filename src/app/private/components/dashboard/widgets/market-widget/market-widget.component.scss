@@ -1,0 +1,11 @@
+@import "var";
+
+.market-widget {
+  padding: calc($spacing * 2) $spacing;
+  border: 3px dashed #888;
+
+  .title {
+    font-size: 22px;
+    margin-bottom: calc($spacing/2);
+  }
+}

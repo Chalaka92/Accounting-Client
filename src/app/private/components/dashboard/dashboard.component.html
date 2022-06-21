@@ -1,0 +1,178 @@
+<template-page [fxLayoutGap]="gap" class="dashboard" fxLayout="column">
+  <!-- FIRST ROW -->
+  <div
+    fxFlex="noshrink"
+    fxLayout="column"
+    [fxLayoutGap]="gap"
+    fxLayout.gt-lg="row"
+  >
+    <div
+      fxLayout="column"
+      [fxLayoutGap]="gap"
+      [fxFlex]="col(2)"
+      fxLayout.gt-sm="row"
+    >
+      <div fxFlex="auto" [fxFlex.gt-sm]="col(4)">
+        <template-bar-chart-widget
+          class="widget route-animations-elements"
+          [data]="salesData$ | async"
+          [options]="totalSalesOptions"
+        ></template-bar-chart-widget>
+      </div>
+
+      <div fxFlex="auto" [fxFlex.gt-sm]="col(4)">
+        <template-line-chart-widget
+          class="widget route-animations-elements"
+          [data]="visitsData$ | async"
+          [options]="totalVisitsOptions"
+        ></template-line-chart-widget>
+      </div>
+    </div>
+
+    <div
+      fxLayout="column"
+      [fxLayoutGap]="gap"
+      [fxFlex]="col(2)"
+      fxLayout.gt-sm="row"
+    >
+      <div fxFlex="auto" [fxFlex.gt-sm]="col(4)">
+        <template-line-chart-widget
+          class="route-animations-elements"
+          [data]="clicksData$ | async"
+          [options]="totalClicksOptions"
+        ></template-line-chart-widget>
+      </div>
+
+      <div fxFlex="auto" [fxFlex.gt-sm]="col(4)">
+        <template-line-chart-widget
+          class="route-animations-elements"
+          [data]="conversionsData$ | async"
+          [options]="conversionsOptions"
+        ></template-line-chart-widget>
+      </div>
+    </div>
+  </div>
+  <!-- END FIRST ROW -->
+
+  <!-- <div
+    fxFlex="noshrink"
+    fxLayout="column"
+    [fxLayoutGap]="gap"
+    fxLayout.gt-lg="row"
+  >
+    <div
+      fxLayout="column"
+      [fxLayoutGap]="gap"
+      [fxFlex]="col(2)"
+      fxLayout.gt-sm="row"
+    >
+      <div fxFlex="grow">
+        <template-audience-overview-widget
+          class="route-animations-elements"
+          [options]="audienceOverviewOptions"
+        ></template-audience-overview-widget>
+      </div>
+    </div>
+
+    <div
+      fxLayout="column"
+      [fxLayoutGap]="gap"
+      [fxFlex]="col(2)"
+      fxLayout.gt-sm="row"
+    >
+      <div
+        [fxFlex.gt-sm]="col(2)"
+        [fxLayoutGap]="gap"
+        fxFlex="grow"
+        fxLayout="column"
+      >
+        <template-sales-summary-widget
+          [data]="salesSummaryData$"
+          [options]="salesSummaryOptions"
+          class="fullheight"
+        ></template-sales-summary-widget>
+
+        <template-quick-info-widget
+          class="route-animations-elements"
+          fxFlex="grow"
+          value="234"
+          label="Customers"
+          [background]="'#009688'"
+          color="white"
+          icon="people"
+        ></template-quick-info-widget>
+      </div>
+
+      <template-realtime-users-widget
+        [data$]="realtimeUsersData$"
+        [fxFlex.gt-sm]="col(2)"
+        [pages$]="realtimeUsersPages$"
+        fxFlex="grow"
+      ></template-realtime-users-widget>
+    </div>
+  </div>
+
+  <div
+    [fxLayoutGap]="gap"
+    fxFlex="noshrink"
+    fxLayout="column"
+    fxLayout.gt-lg="row"
+  >
+    <div fxLayout="column" [fxLayoutGap]="gap" [fxFlex]="col(2)">
+      <template-advanced-pie-chart-widget
+        class="route-animations-elements"
+        [data]="advancedPieChartData$ | async"
+        [options]="advancedPieChartOptions"
+      ></template-advanced-pie-chart-widget>
+
+      <div [fxLayoutGap]="gap" fxLayout="column" fxLayout.gt-sm="row">
+        <template-donut-chart-widget
+          [data]="top5CategoriesData$"
+          [options]="top5CategoriesOptions"
+          [fxFlex]="col(2)"
+          class="route-animations-elements"
+        ></template-donut-chart-widget>
+
+        <div [fxFlex]="col(2)">
+          <mat-card class="example-card">
+            <mat-card-header>
+              <img mat-card-avatar src="assets/img/avatars/1.jpg" />
+              <mat-card-title>Shiba Inu</mat-card-title>
+              <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+            </mat-card-header>
+            <img
+              mat-card-image
+              src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+              alt="Photo of a Shiba Inu"
+            />
+            <mat-card-content>
+              <p>
+                The Shiba Inu is the smallest of the six original and distinct
+                spitz breeds of dog from Japan. A small, agile dog that copes
+                very well with mountainous terrain, the Shiba Inu was originally
+                bred for hunting.
+              </p>
+            </mat-card-content>
+            <mat-card-actions align="end">
+              <button mat-button>LIKE</button>
+              <button mat-button>SHARE</button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </div>
+
+      <template-market-widget></template-market-widget>
+    </div>
+
+    <div fxLayout="column" [fxLayoutGap]="gap" [fxFlex]="col(2)">
+      <div fxFlex="grow" class="route-animations-elements">
+        <template-recent-sales-widget
+          [options]="recentSalesOptions"
+          [chartData]="recentSalesData$"
+          [tableOptions]="recentSalesTableOptions"
+          [tableData]="recentSalesTableData$"
+        ></template-recent-sales-widget>
+      </div>
+    </div>
+  </div> -->
+</template-page>
