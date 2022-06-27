@@ -1,9 +1,10 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
-import { LoginService } from 'src/app/core/services/login.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { fadeInUpAnimation } from '@template/animations/fade-in-up.animation';
+import { AuthService } from 'src/app/core/auth/auth.service';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'sp-login',
@@ -22,24 +23,40 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private cd: ChangeDetectorRef,
     private snackbar: MatSnackBar,
-    private loginService: LoginService
+    private authService: AuthService,
+    private userService: UserService,
+    private activatedRoute: ActivatedRoute
   ) {
-    if (this.loginService.currentUserValue) {
+    if (this.authService.isLoggedIn()) {
       this.router.navigate(['/private/dashboard']);
     }
   }
 
   ngOnInit() {
     this.form = this.fb.group({
-      email: ['', Validators.required],
+      email: [
+        '',
+        [
+          Validators.required,
+          Validators.email,
+          Validators.pattern(
+            '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,63}$'
+          ),
+        ],
+      ],
       password: ['', Validators.required],
     });
   }
 
   login() {
-    this.loginService.login(this.model).subscribe(
+    this.authService.login(this.model).subscribe(
       (next) => {
-        this.router.navigate(['private']);
+        const returnUrl =
+          this.activatedRoute.snapshot.queryParamMap.get('returnUrl');
+
+        if (returnUrl) this.router.navigate([returnUrl]);
+        else this.router.navigate(['private']);
+
         this.snackbar.open('Login Successful', 'x', {
           duration: 3000,
           panelClass: 'notif-success',

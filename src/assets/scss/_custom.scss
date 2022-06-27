@@ -1,21 +1,35 @@
+@import "./partials/colors";
+
 .notif-success {
-  color: #fffffa !important; // green
-  background-color: #009688 !important;
-  border-color: #009688 !important;
+  color: $notif-success-color !important; // green
+  background-color: $notif-success-background-color !important;
+  border-color: $notif-success-border-color !important;
   font-weight: bold !important;
   .mat-simple-snackbar-action {
-    color: #fffffa !important;
+    color: $notif-success-color !important;
     font-weight: bold !important;
   }
 }
 
 .notif-error {
-  color: #fffffa !important;
-  background-color: #ff7676 !important;
-  border-color: #ff7676 !important;
+  color: $notif-error-color !important;
+  background-color: $notif-error-background-color !important;
+  border-color: $notif-error-border-color !important;
   font-weight: bold !important;
   .mat-simple-snackbar-action {
-    color: #fffffa !important;
+    color: $notif-error-color !important;
     font-weight: bold !important;
   }
+}
+
+.error-box {
+  padding: $padding-sm !important;
+}
+
+.mat-raised-button {
+  border-radius: $border-radius !important;
+}
+
+.mat-form-field-subscript-wrapper {
+  position: unset !important;
 }

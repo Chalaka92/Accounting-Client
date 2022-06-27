@@ -20,8 +20,11 @@ import { MarketWidgetComponent } from './components/dashboard/widgets/market-wid
 import { DashboardService } from './services/dashboard.service';
 import { CompanyComponent } from './components/accountings-settings/company/company.component';
 import { CompanyService } from './http/company.service';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from '../core/interceptors/jwt.interceptor';
+import { LoginService } from '../core/services/login.service';
+import { CoreModule } from '../core/core.module';
+import { ErrorInterceptor } from '../core/interceptors/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -40,12 +43,13 @@ import { JwtInterceptor } from '../core/interceptors/jwt.interceptor';
     MarketWidgetComponent,
     CompanyComponent,
   ],
-  imports: [CommonModule, PrivateRoutingModule, SharedModule, LayoutModule],
-  exports: [DashboardComponent],
+  imports: [CommonModule, PrivateRoutingModule, SharedModule],
+  exports: [],
   providers: [
     DashboardService,
     CompanyService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
 })
 export class PrivateModule {}

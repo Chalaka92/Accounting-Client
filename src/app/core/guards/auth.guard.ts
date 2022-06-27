@@ -7,22 +7,27 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    return this.isAuthenticated(state);
+  }
+
+  isAuthenticated(state: RouterStateSnapshot): boolean {
     // const currentUser = this.authenticationService.currentUserValue;
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    const currentUser = this.authService.isLoggedIn();
     if (currentUser) {
       // logged in so return true
       return true;
     }
 
-    // not logged in so redirect to login page with the return url
+    // not logged in so redirect to auth page with the return url
     this.router.navigate(['public/login'], {
       queryParams: { returnUrl: state.url },
     });

@@ -105,7 +105,7 @@
         [formGroup]="form"
       >
         <div fxFlex="auto" fxLayout="column">
-          <mat-form-field fxFlex="grow">
+          <mat-form-field fxFlex="grow" appearance="outline">
             <mat-label>E-Mail</mat-label>
             <input
               matInput
@@ -116,8 +116,11 @@
             <mat-error *ngIf="form.get('email').hasError('required')"
               >We need an email address to log you in</mat-error
             >
+            <mat-error *ngIf="form.get('email').hasError('email')"
+              >Please enter a valid email address
+            </mat-error>
           </mat-form-field>
-          <mat-form-field fxFlex="grow">
+          <mat-form-field fxFlex="grow" appearance="outline">
             <mat-label>Password</mat-label>
             <input
               matInput

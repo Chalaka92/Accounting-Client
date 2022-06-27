@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { LoginService } from 'src/app/core/services/login.service';
+import { AuthService } from 'src/app/core/auth/auth.service';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'template-toolbar-user',
@@ -11,9 +12,12 @@ export class ToolbarUserComponent implements OnInit {
   isOpen: boolean;
   username = '';
 
-  constructor(private loginService: LoginService) {
-    if (this.loginService.currentUserValue) {
-      this.username = this.loginService.currentUserValue.user.name;
+  constructor(
+    private authService: AuthService,
+    private userService: UserService
+  ) {
+    if (this.authService.isLoggedIn) {
+      this.username = this.userService.currentUserValue.user.name;
     }
   }
 
@@ -28,6 +32,6 @@ export class ToolbarUserComponent implements OnInit {
   }
 
   logout() {
-    this.loginService.logout();
+    this.authService.logout();
   }
 }

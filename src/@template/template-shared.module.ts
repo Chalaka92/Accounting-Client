@@ -20,6 +20,7 @@ import { PageLayoutModule } from './shared/page-layout/page-layout.module';
 import { TemplateCardModule } from './shared/card/card.module';
 import { ScrollbarModule } from './shared/scrollbar/scrollbar.module';
 import { LoadingOverlayModule } from './shared/loading-overlay/loading-overlay.module';
+import { MaterialModule } from './shared/material-components.module';
 
 @NgModule({
   imports: [CommonModule],
@@ -47,6 +48,7 @@ import { LoadingOverlayModule } from './shared/loading-overlay/loading-overlay.m
     MatMenuModule,
     FontAwesomeModule,
     ScrollingModule,
+    MaterialModule,
   ],
 })
 export class TemplateSharedModule {}

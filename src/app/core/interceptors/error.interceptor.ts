@@ -6,13 +6,13 @@ import {
   HttpInterceptor,
 } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
-import { LoginService } from '../services/login.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
   constructor(
-    private loginService: LoginService,
+    private authService: AuthService,
     private snackbar: MatSnackBar
   ) {}
 
@@ -24,7 +24,7 @@ export class ErrorInterceptor implements HttpInterceptor {
       catchError((err) => {
         if (err.status === 401) {
           // auto logout if 401 response returned from api
-          this.loginService.logout();
+          this.authService.logout();
           // tslint:disable-next-line: deprecation
           // location.reload(true);
           this.snackbar.open('Username or Password incorrect.', 'x', {

@@ -1,51 +1,35 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { fadeInUpAnimation } from '@template/animations/fade-in-up.animation';
 import { AuthService } from 'src/app/core/auth/auth.service';
 import { CustomValidatorsService } from 'src/app/shared/services/custom-validators.service';
 
 @Component({
-  selector: 'template-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss'],
+  selector: 'template-reset-password',
+  templateUrl: './reset-password.component.html',
+  styleUrls: ['./reset-password.component.scss'],
   animations: [fadeInUpAnimation],
 })
-export class RegisterComponent implements OnInit {
+export class ResetPasswordComponent implements OnInit {
   form: FormGroup;
   model: any = {};
   inputType = 'password';
   visible = false;
-  responseError;
 
   constructor(
     private router: Router,
     private fb: FormBuilder,
     private cd: ChangeDetectorRef,
     private authService: AuthService,
-    private snackbar: MatSnackBar
+    private snackbar: MatSnackBar,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit() {
     this.form = this.fb.group(
       {
-        name: ['', Validators.required],
-        email: [
-          '',
-          [
-            Validators.required,
-            Validators.email,
-            Validators.pattern(
-              '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,63}$'
-            ),
-          ],
-        ],
         password: [
           '',
           [
@@ -66,24 +50,32 @@ export class RegisterComponent implements OnInit {
     );
   }
 
-  signUp() {
-    this.authService.signUp(this.model).subscribe(
+  resetPassword() {
+    let resetToken;
+    this.activatedRoute.params.subscribe((params) => {
+      resetToken = params['resetToken'];
+    });
+
+    this.authService.resetPassword(this.model, resetToken).subscribe(
       (response) => {
         if (response && response.status === 'success') {
           this.router.navigate(['private']);
-          this.snackbar.open('User Successfully Created', 'x', {
+          this.snackbar.open('Password successfully resetted', 'x', {
             duration: 3000,
             panelClass: 'notif-success',
           });
         }
       },
       (error) => {
-        this.responseError = error?.error?.message;
-        // this.form.reset();
-        // this.snackbar.open(error.error.message, 'x', {
-        //   duration: 3000,
-        //   panelClass: 'notif-error',
-        // });
+        this.form.reset();
+        this.snackbar.open(
+          'Something went wrong <br/>' + error?.error?.message,
+          'x',
+          {
+            duration: 3000,
+            panelClass: 'notif-error',
+          }
+        );
       }
     );
   }

@@ -8,16 +8,14 @@ import {
   MatFormFieldDefaultOptions,
   MAT_FORM_FIELD_DEFAULT_OPTIONS,
 } from '@angular/material/form-field';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import {
   MAT_SNACK_BAR_DEFAULT_OPTIONS,
   MatSnackBarConfig,
 } from '@angular/material/snack-bar';
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 import { fakeBackendProvider } from './core/interceptors/fake-backend.interceptor';
-import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 import { CoreModule } from './core/core.module';
-import { LoginService } from './core/services/login.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -38,10 +36,10 @@ import { LoginService } from './core/services/login.service';
       } as MatSnackBarConfig,
     },
 
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     // provider used to create fake backend
     fakeBackendProvider,
   ],
   bootstrap: [AppComponent],
+  exports: [],
 })
 export class AppModule {}

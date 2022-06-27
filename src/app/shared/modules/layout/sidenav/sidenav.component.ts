@@ -60,7 +60,7 @@ export class SidenavComponent implements OnInit, OnDestroy {
       // },
       {
         name: 'Dashboard',
-        routeOrFunction: '/private',
+        routeOrFunction: '/private/dashboard',
         icon: 'dashboard',
         position: 5,
         pathMatchExact: true,

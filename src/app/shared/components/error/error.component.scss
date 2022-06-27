@@ -1,0 +1,51 @@
+@import "var";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  align-content: center;
+  align-items: center;
+  background: #fff url("/assets/img/backgrounds/editor.jpg");
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.card {
+  border-radius: $border-radius;
+  width: 680px;
+  max-width: 100%;
+  text-align: center;
+  overflow: hidden;
+  @include mat-elevation(8);
+}
+
+.card-content {
+  padding: $spacing;
+}
+
+.card-footer {
+  padding: $spacing;
+}
+
+.logo {
+  margin: $spacing 0;
+
+  svg {
+    height: 80px;
+    width: 80px;
+  }
+}
+
+h1 {
+  font: var(--font-display-1);
+  font-weight: 500;
+  margin: $spacing 0 0;
+}
+
+p {
+  font: var(--font-body-2);
+  margin: 0 0 $spacing;
+}

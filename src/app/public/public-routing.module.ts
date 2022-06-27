@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ForgotPasswordComponent } from './components/authentication/forgot-password/forgot-password.component';
 import { LoginComponent } from './components/authentication/login/login.component';
 import { RegisterComponent } from './components/authentication/register/register.component';
+import { ResetPasswordComponent } from './components/authentication/reset-password/reset-password.component';
 import { PublicComponent } from './public.component';
 
 const routes: Routes = [
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent,
+  },
+  {
+    path: 'reset-password/:resetToken',
+    component: ResetPasswordComponent,
   },
 ];
 
