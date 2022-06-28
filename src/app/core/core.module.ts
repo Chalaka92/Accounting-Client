@@ -6,11 +6,12 @@ import { AuthGuard } from './guards/auth.guard';
 import { TemplateSharedModule } from '@template/template-shared.module';
 import { AuthService } from './auth/auth.service';
 import { UserService } from './services/user.service';
+import { RoleGuard } from './guards/role.guard';
 
 @NgModule({
   declarations: [],
   imports: [CommonModule, HttpClientModule],
-  providers: [LoginService, AuthGuard, AuthService, UserService],
+  providers: [LoginService, AuthGuard, AuthService, UserService, RoleGuard],
   exports: [TemplateSharedModule],
 })
 export class CoreModule {}

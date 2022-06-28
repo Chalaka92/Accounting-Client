@@ -7,13 +7,15 @@ import { LoginService } from '../core/services/login.service';
 import { CoreModule } from '../core/core.module';
 import { LayoutModule } from './modules/layout/layout.module';
 import { ErrorComponent } from './components/error/error.component';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
-  declarations: [ErrorComponent],
+  declarations: [ErrorComponent, ConfirmDialogComponent],
   imports: [
     CommonModule,
     // Displays Loading Bar when a Route Request or HTTP Request is pending
     PendingInterceptorModule,
+    CoreModule,
   ],
   exports: [NgChartsModule, ReactiveFormsModule, LayoutModule, CoreModule],
   providers: [LoginService],

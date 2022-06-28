@@ -11,6 +11,7 @@ import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -33,9 +34,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
+  imports: [CommonModule],
   exports: [
     MatInputModule,
     MatTabsModule,
@@ -68,8 +67,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatStepperModule,
     FlexLayoutModule,
     MatDividerModule,
-    MatBadgeModule
-  ]
+    MatBadgeModule,
+  ],
 })
-export class MaterialModule {
-}
+export class MaterialModule {}

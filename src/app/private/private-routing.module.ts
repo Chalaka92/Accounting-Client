@@ -5,6 +5,7 @@ import { RoleGuard } from '../core/guards/role.guard';
 import { ErrorComponent } from '../shared/components/error/error.component';
 import { LayoutComponent } from '../shared/modules/layout/layout.component';
 import { CompanyComponent } from './components/accountings-settings/company/company.component';
+import { PaymentTermComponent } from './components/accountings-settings/payment-term/payment-term.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 const routes: Routes = [
@@ -25,6 +26,14 @@ const routes: Routes = [
       {
         path: 'accountingsettings/company',
         component: CompanyComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: {
+          expectedRoles: ['admin'],
+        },
+      },
+      {
+        path: 'accountingsettings/paymentterm',
+        component: PaymentTermComponent,
         canActivate: [AuthGuard, RoleGuard],
         data: {
           expectedRoles: ['admin'],

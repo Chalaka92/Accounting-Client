@@ -21,6 +21,7 @@ import { TemplateCardModule } from './shared/card/card.module';
 import { ScrollbarModule } from './shared/scrollbar/scrollbar.module';
 import { LoadingOverlayModule } from './shared/loading-overlay/loading-overlay.module';
 import { MaterialModule } from './shared/material-components.module';
+import { ListModule } from './shared/list/list.module';
 
 @NgModule({
   imports: [CommonModule],
@@ -35,17 +36,10 @@ import { MaterialModule } from './shared/material-components.module';
     TemplateCardModule,
     ScrollbarModule,
     LoadingOverlayModule,
+    ListModule,
 
     // External
     FlexLayoutModule,
-    MatInputModule,
-    MatIconModule,
-    MatButtonModule,
-    MatRippleModule,
-    MatSlideToggleModule,
-    MatCheckboxModule,
-    MatRadioModule,
-    MatMenuModule,
     FontAwesomeModule,
     ScrollingModule,
     MaterialModule,

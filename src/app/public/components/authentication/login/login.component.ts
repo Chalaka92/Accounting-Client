@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   model: any = {};
   inputType = 'password';
   visible = false;
+  responseError;
 
   constructor(
     private router: Router,
@@ -64,6 +65,7 @@ export class LoginComponent implements OnInit {
       },
       (error) => {
         this.form.reset();
+        this.responseError = error?.error?.message;
       }
     );
   }

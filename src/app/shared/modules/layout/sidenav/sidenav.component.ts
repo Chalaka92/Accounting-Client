@@ -82,13 +82,13 @@ export class SidenavComponent implements OnInit, OnDestroy {
             position: 15,
           },
           {
-            name: 'Format Settings',
+            name: 'Format Setting',
             routeOrFunction: '/forms/form-wizard',
             position: 20,
           },
           {
             name: 'Payment Term',
-            routeOrFunction: '/forms/form-wizard',
+            routeOrFunction: '/private/accountingsettings/paymentterm',
             position: 25,
           },
           {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CompanyService } from 'src/app/private/http/company.service';
+import { CompanyService } from 'src/app/private/http/accounting-settings/company.service';
 
 @Component({
   selector: 'template-company',

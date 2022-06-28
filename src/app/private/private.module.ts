@@ -5,7 +5,6 @@ import { PrivateRoutingModule } from './private-routing.module';
 import { PrivateComponent } from './private.component';
 import { SharedModule } from '../shared/shared.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { LayoutModule } from '../shared/modules/layout/layout.module';
 import { AdvancedPieChartWidgetComponent } from './components/dashboard/widgets/advanced-pie-chart-widget/advanced-pie-chart-widget.component';
 import { AudienceOverviewWidgetComponent } from './components/dashboard/widgets/audience-overview-widget/audience-overview-widget.component';
 import { BarChartWidgetComponent } from './components/dashboard/widgets/bar-chart-widget/bar-chart-widget.component';
@@ -19,12 +18,14 @@ import { RecentSalesWidgetTableComponent } from './components/dashboard/widgets/
 import { MarketWidgetComponent } from './components/dashboard/widgets/market-widget/market-widget.component';
 import { DashboardService } from './services/dashboard.service';
 import { CompanyComponent } from './components/accountings-settings/company/company.component';
-import { CompanyService } from './http/company.service';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from '../core/interceptors/jwt.interceptor';
-import { LoginService } from '../core/services/login.service';
-import { CoreModule } from '../core/core.module';
 import { ErrorInterceptor } from '../core/interceptors/error.interceptor';
+import { CompanyCreateUpdateComponent } from './components/accountings-settings/company/company-create-update/company-create-update.component';
+import { PaymentTermComponent } from './components/accountings-settings/payment-term/payment-term.component';
+import { CompanyService } from './http/accounting-settings/company.service';
+import { PaymentTermCreateUpdateComponent } from './components/accountings-settings/payment-term/payment-term-create-update/payment-term-create-update.component';
+import { PaymentTermService } from './http/accounting-settings/payment-term.service';
 
 @NgModule({
   declarations: [
@@ -42,12 +43,16 @@ import { ErrorInterceptor } from '../core/interceptors/error.interceptor';
     RecentSalesWidgetTableComponent,
     MarketWidgetComponent,
     CompanyComponent,
+    CompanyCreateUpdateComponent,
+    PaymentTermComponent,
+    PaymentTermCreateUpdateComponent,
   ],
   imports: [CommonModule, PrivateRoutingModule, SharedModule],
   exports: [],
   providers: [
     DashboardService,
     CompanyService,
+    PaymentTermService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],

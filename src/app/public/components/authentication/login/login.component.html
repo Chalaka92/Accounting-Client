@@ -155,6 +155,15 @@
         <button color="primary" [disabled]="form.invalid" mat-raised-button>
           SIGN IN
         </button>
+        <template-card
+          [style.background]="'#ff6384'"
+          [style.color]="'#fff'"
+          *ngIf="responseError"
+        >
+          <template-card-content class="error-box">
+            {{ responseError }}
+          </template-card-content>
+        </template-card>
         <p class="secondary-text text-center">
           Don't have an account?<br />
           <a [routerLink]="['/public/register']">Click here to create one</a>
